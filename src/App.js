@@ -1,7 +1,7 @@
-import logo from './logo.svg';
+
 import './App.css';
 import Header from './components/header/header';
-import {useState,useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import Products from './components/product/product';
 import Login from './components/login/login';
 import Footer from './components/footer/footer';
@@ -11,9 +11,10 @@ import img3 from '../src/zomato-image/cafes.jpg';
 import img4 from '../src/zomato-image/images.jpg';
 import img5 from '../src/zomato-image/sweet tooth.jpg';
 import img6 from '../src/zomato-image/veggie.jpeg';
+import Body from './components/body/body'
 
 function App() {
-  const images = [img1,img2,img3,img4,img5,img6]
+  const images = [img1, img2, img3, img4, img5, img6]
 
   // const order = [
   //   {
@@ -44,32 +45,34 @@ function App() {
   // ]
 
   const [isLoggedin, setLoggedIn] = useState(false);
-  const loginHandler = (islogin) => {
-    setLoggedIn(islogin);
+  const loginHandler = (a) => {
+    setLoggedIn(a);
   }
   const [items, setItems] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setLoggedIn(localStorage.getItem('login'))
-    fetch('https://6314c7e8fa82b738f74e0f19.mockapi.io/login').then((response)=>{
+    fetch('https://6314c7e8fa82b738f74e0f19.mockapi.io/hotel').then((response) => {
       return response.json()
-      
-    }).then((data)=>{
-      data.forEach((dat,i)=>{
-        dat.image = images[i%images.length]
+
+    }).then((data) => {
+      data.forEach((dat, i) => {
+        dat.image = images[i % images.length]
       })
-      setItems(data)
+      setItems([...data])
+      // console.log(data);
     })
-  },[]);
+  }, []);
   return (
     <div className="App">
-     <Header></Header>
-     <div className='container'>
-     {isLoggedin ? <Products logout={loginHandler}/> : <Login isLoggedin={loginHandler}/>}
+      <Header></Header>
+      <div className='container'>
+        {isLoggedin ? <Products logout={loginHandler} /> : <Login isLoggedin={loginHandler} />}
+      </div>
+      <Body input={items}></Body>
+      <Footer></Footer>
     </div>
-    <Footer></Footer>
-    </div>
-    
+
   );
 }
 

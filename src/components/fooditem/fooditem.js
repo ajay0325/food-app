@@ -20,14 +20,6 @@ function FoodItems(props){
             <p>{"Rs."}{price}</p>
             <span>{offer}{"%Offer"}</span>
             <h5>{restaurant}</h5>
-            {/* <table>
-                <tr>
-                    <td>{location}</td>
-                    <td>{hotel}</td>
-                    <td>{food}</td>
-                    <td>{qty}</td>
-                </tr>
-            </table> */}
         </div>
     )
 }

@@ -16,7 +16,7 @@ function Footer(){
             </div>
             <div className='box'>
                 <h2>Zomato verse</h2>
-                <p>doing</p>
+                <p>Zomato</p>
                 <p>feeding india</p>
                 <p>hyperpure</p>
                 <p>our land</p>
